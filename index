@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Libre autorizado</title>
+</head>
+
+<body>
+    <h1>Autorización de Mercado Libre</h1>
+
+    <p id="mensaje">Procesando autorización...</p>
+
+    <pre id="codigo"></pre>
+
+    <script>
+        const parametros = new URLSearchParams(window.location.search);
+
+        const code = parametros.get("code");
+        const error = parametros.get("error");
+
+        const mensaje = document.getElementById("mensaje");
+        const codigo = document.getElementById("codigo");
+
+        if (code) {
+            mensaje.textContent = "La cuenta fue autorizada correctamente.";
+            codigo.textContent = "Código recibido: " + code;
+        } else if (error) {
+            mensaje.textContent = "Mercado Libre devolvió un error.";
+            codigo.textContent = error;
+        } else {
+            mensaje.textContent =
+                "Página preparada para recibir la autorización de Mercado Libre.";
+        }
+    </script>
+</body>
+</html>
